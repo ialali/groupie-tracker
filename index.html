@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Artists</title>
+    <link rel="stylesheet" href="static/styles.css">
+</head>
+
+<body>
+    <h1>GROUPIE-TRACKER</h1>
+    <div class="artist-container">
+        {{range $index, $artist := .Artists}}
+        <div class="artist-card">
+            <div class="artist-image">
+                <img src="{{.Image}}" alt="Artist Image">
+                <div class="artist-info">
+                    <h2><a href="/artists/{{.Id}}" id="link">{{.Name}}</a></h2>
+                    <!-- <p>Members:</p>
+                    <ul>
+                        {{range .Members}}
+                        <li>{{.}}</li>
+                        {{end}}
+                    </ul> -->
+                    <p>Creation Date: {{.CreationDate}}</p>
+                    <p>First Album: {{.FirstAlbum}}</p>
+                    <!-- <p>Locations:</p>
+                    <ul>
+                        {{range .Locations.Index}}
+                        <li>{{.Location}}</li>
+                        {{end}}
+                    </ul> -->
+                    <!-- <p>Dates:</p>
+                    <ul>
+                        {{range .Dates.Index}}
+                        {{range .Dates}}
+                        <li>{{.}}</li>
+                        {{end}}
+                        {{end}}
+                    </ul> -->
+                    <!-- <p>Relations:</p>
+                    <ul>
+                        {{range .Relations.Index}}
+                        <li>ID: {{.Id}}</li>
+                        <ul>
+                            {{range $key, $value := .DatesLocations}}
+                            <li>{{$key}}: {{$value}}</li>
+                            {{end}}
+                        </ul>
+                        {{end}}
+                    </ul> -->
+                </div>
+            </div>
+        </div>
+        {{end}}
+    </div>
+</body>
+
+</html>

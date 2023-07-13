@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Artist Details</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+
+        }
+
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            font-family: sans-serif;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 3.5em;
+
+        }
+
+        ul,
+        li {
+            list-style: none;
+        }
+
+        p {
+            font-size: 1.6em;
+            margin-bottom: 5px;
+        }
+
+        ul {
+            margin-top: 5px;
+            margin-bottom: 10px;
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        img {
+            max-width: 200px;
+            max-height: 200px;
+            margin-bottom: 10px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+
+        <h1>{{.Name}}</h1>
+        <h2>ID:{{.Id}}</h2>
+        <img src="{{.Image}}" alt="Artist Image">
+        <p>Members:</p>
+        <ul>
+            {{range .Members}}
+            <li>{{.}}</li>
+            {{end}}
+        </ul>
+        <p> Creation Date:<span>{{.CreationDate}}</span></p>
+        <p>First Album: <span>{{.FirstAlbum}}</span></p>
+        <p>Locations:</p>
+        <ul>
+            {{range .Locations.Index}}
+            {{range .Location}}
+            <li>{{.}}</li>
+            {{end}}
+            {{end}}
+        </ul>
+        <p>Dates:</p>
+        <ul>
+            {{range .Dates.Index}}
+            {{range .Dates}}
+            <li>{{.}}</li>
+            {{end}}
+            {{end}}
+        </ul>
+        <p>Relations:</p>
+        <ul>
+            {{range .Relations.Index}}
+
+            <ul>
+                {{range $key, $value := .DatesLocations}}
+                <li>{{$key}}: {{$value}}</li>
+                {{end}}
+            </ul>
+            {{end}}
+        </ul>
+    </div>
+</body>
+
+</html>

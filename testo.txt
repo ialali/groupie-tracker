@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Artists</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+
+        h1 {
+            font-size: 3.5em;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .artist-card {
+            display: block;
+            width: 100%;
+            margin-bottom: 20px;
+            padding: 20px;
+            border: 1px solid #ccc;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .artist-card .artist-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 10px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .artist-card .artist-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .artist-card .artist-info {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            color: #fff;
+            padding: 10px;
+        }
+
+        .artist-card:hover .artist-info {
+            display: block;
+        }
+
+        .artist-container {
+            column-count: 3;
+            column-gap: 0px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>GROUPIE-TRACKER</h1>
+    <div class="artist-container">
+        {{range .Artists}}
+        <div class="artist-card">
+            <div class="artist-image">
+                <img src="{{.Image}}" alt="Artist Image">
+                <div class="artist-info">
+                    <h2>{{.Name}}</h2>
+                    <p>Members:</p>
+                    <ul>
+                        {{range .Members}}
+                        <li>{{.}}</li>
+                        {{end}}
+                    </ul>
+                    <p>Creation Date: {{.CreationDate}}</p>
+                    <p>First Album: {{.FirstAlbum}}</p>
+                    <p>Locations:</p>
+                    <ul>
+                        {{range .Locations.Index}}
+                        <li>{{.Location}}</li>
+                        {{end}}
+                    </ul>
+                    <p>Dates:</p>
+                    <ul>
+                        {{range .Dates.Index}}
+                        {{range .Dates}}
+                        <li>{{.}}</li>
+                        {{end}}
+                        {{end}}
+                    </ul>
+                    <p>Relations:</p>
+                    <ul>
+                        {{range .Relations.Index}}
+                        <li>ID: {{.Id}}</li>
+                        <ul>
+                            {{range $key, $value := .DatesLocations}}
+                            <li>{{$key}}: {{$value}}</li>
+                            {{end}}
+                        </ul>
+                        {{end}}
+                    </ul>
+                </div>
+            </div>
+        </div>
+        {{end}}
+    </div>
+</body>
+
+</html>
