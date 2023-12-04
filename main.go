@@ -19,6 +19,7 @@ func main() {
 	http.Handle("/static/", http.StripPrefix("/static/", fs))
 	http.HandleFunc("/", handlers.Homepage)
 	http.HandleFunc("/artists/", handlers.ArtistHandler)
+	http.HandleFunc("/search/", handlers.SearchHandler)
 	// http.HandleFunc("/artists/", idHandler) // funciona asi
 	fmt.Println("Server started. Listening on http://localhost:8027")
 	log.Fatal(http.ListenAndServe(":8027", nil))
